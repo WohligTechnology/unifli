@@ -30,7 +30,19 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.formSubmitted = true;
     }
 })
+.controller('AboutCtrl', function($scope, TemplateService, NavigationService, $timeout) {
+    $scope.template = TemplateService.changecontent("about"); //Use same name of .html file
+    $scope.menutitle = NavigationService.makeactive("About"); //This is the Title of the Website
+    TemplateService.title = $scope.menutitle;
+    $scope.navigation = NavigationService.getnav();
 
+    $scope.formSubmitted = false;
+
+    $scope.submitForm = function(data) {
+        console.log(data);
+        $scope.formSubmitted = true;
+    }
+})
 .controller('headerctrl', function($scope, TemplateService) {
     $scope.template = TemplateService;
     $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
